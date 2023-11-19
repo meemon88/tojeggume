@@ -10,8 +10,11 @@ class JobJoiningDate extends StatefulWidget {
 }
 
 class _JobJoiningDateState extends State<JobJoiningDate> {
+
+
   //Date Time Funcutions
   DateTime? _dateTime;
+  var result;
   getDate() async {
     DateTime? date = await showDatePicker(
         context: context,
@@ -29,14 +32,14 @@ class _JobJoiningDateState extends State<JobJoiningDate> {
     return Center(
       child: Column(
         children: <Widget>[
-          _dateTime == null? Text('Choose Date',style: TextStyle(fontSize: 19),):Text("Year: ${_dateTime!.year} Month: ${_dateTime!.month} Day: ${_dateTime!.day}",style: TextStyle(fontSize: 19),),
+          _dateTime == null? const Text('Choose Date',style: TextStyle(fontSize: 19)):Text("Year: ${_dateTime!.year} Month: ${_dateTime!.month} Day: ${_dateTime!.day}",style: const TextStyle(fontSize: 19),),
           SizedBox(height: 15.h,),
 
           ElevatedButton(
               onPressed: () {
                 getDate();
               },
-              child: Text('Select Date')),
+              child: const Text('Select Date')),
         ],
       ),
     );

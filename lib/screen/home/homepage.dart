@@ -19,25 +19,10 @@ class _HomePageState extends State<HomePage> {
    TextEditingController _firstMonth = TextEditingController();
    TextEditingController _secondMonth = TextEditingController();
    TextEditingController _thirdMonth = TextEditingController();
-  
 
-  String  salaryOne = "";
-  String salaryTwo = "";
-  String salaryThree = "";
-  String samsungAmount = "";
 
-  calculate() {
-    
-    
-    
-    
-    setState(() {
-      salaryOne = _firstMonth.text;
-      salaryTwo = _secondMonth.text;
-      salaryThree = _thirdMonth.text;
-      samsungAmount = _samsungAmount.text;
-    });
-  }
+var result;
+  String myFullResult ="";
 
   @override
   Widget build(BuildContext context) {
@@ -63,86 +48,63 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 5.h),
               Container(
                 height: 120.h,
-                width: 300.w,
+                width: 250.w,
                 decoration: BoxDecoration(
                     color: Colors.white70,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.black)),
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text('job_join_date'.tr,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    SizedBox(
-                      height: 15.h,
-                    ),
+                    SizedBox(height: 5.h),
+                    Text('job_join_date'.tr, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    const Spacer(),
                     const JobJoiningDate(),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 5.h,
-              ),
+              SizedBox(height: 10.h),
               Container(
                 height: 120.h,
-                width: 300.w,
+                width: 250.w,
                 decoration: BoxDecoration(
                     color: Colors.white70,
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.black)),
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text('job_end_date'.tr,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    const JobJoiningDate(),
+                    SizedBox(height: 5.h),
+                    Text('job_end_date'.tr, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    const Spacer(),
+                    JobJoiningDate(),
                   ],
                 ),
               ),
               SizedBox(height: 15.h),
-              customTextField(
-                label: "Salary One",
-                  // hintText: 'last_three_month_salary'.tr,
-                  controller: _firstMonth),
+              customTextField(label: "Salary One",controller: _firstMonth),
               SizedBox(height: 5.h),
-              customTextField(
-                  label: "Salary Two",
-                  // hintText: 'last_three_month_salary'.tr,
-                  controller: _secondMonth),
+              customTextField(label: "Salary Two",controller: _secondMonth),
               SizedBox(height: 5.h),
-              customTextField(
-                  label: "Salary Three",
-                  // hintText: 'last_three_month_salary'.tr,
-                  controller: _thirdMonth),
+              customTextField(label: "Salary Three", controller: _thirdMonth),
               SizedBox(height: 5.h),
-              customTextField(
-                  label: "Samsung Amount",
-                  // hintText: 'samsung_amount'.tr,
-                  controller: _samsungAmount),
+              customTextField(label: "Samsung Amount", controller: _samsungAmount),
               SizedBox(height: 10.h),
               customDetailsBox(
-                  child: Column(
-                children: [
-                  Text(salaryOne),
-                  Text(salaryTwo),
-                  Text(salaryThree),
-                  Text(samsungAmount),
-                  Text("${salaryOne + salaryTwo + salaryThree}")
-                ],
-              )),
+                  child: Column(children: [Text(result == null? "0" : result.toString())])),
               SizedBox(height: 10.h),
               ElevatedButton(
                   onPressed: () {
-                    calculate();
+
+                    setState(() {
+
+                      int salaryOne1= int.parse(_firstMonth.text);
+                      int salaryOne2= int.parse(_secondMonth.text);
+                      int salaryOne3= int.parse(_thirdMonth.text);
+                      int samsungAnount= int.parse(_samsungAmount.text);
+
+                      result =(salaryOne1+salaryOne2+salaryOne3)/3-samsungAnount;
+                      myFullResult = result.toString();
+                    });
+
                   },
                   child: Text('calculate'.tr))
             ],
