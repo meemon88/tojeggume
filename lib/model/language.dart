@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:toejiggeum/utill/languages/bangla.dart';
-import 'package:toejiggeum/utill/languages/english.dart';
+import 'package:toejiggeum/languages/bangla.dart';
+import 'package:toejiggeum/languages/english.dart';
 
 class Languages extends Translations{
   @override
