@@ -1,8 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:toejiggeum/model/language.dart';
+import 'package:toejiggeum/languages/language.dart';
 import 'package:toejiggeum/homepage.dart';
+
+
+// Future internetChacker()async{
+//   try{
+//     await InternetAddress.lookup('google.com');
+//     print('Ihave Internet');
+//   }catch(e){
+//     print(e);
+//   }
+//
+// }
 
 void main() {
   runApp(const MyApp());
@@ -17,19 +30,16 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
-// Use builder only if you need to use library outside ScreenUtilInit context
+        // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (_, child) {
           return GetMaterialApp(
             translations: Languages(),
-            locale: const Locale('en', 'US'),
+            locale: Locale('en', 'US'),
             fallbackLocale: const Locale('en', 'US'),
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(primarySwatch: Colors.green,
-              //textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp,displayColor: Colors.black12),
-            ),
+            theme: ThemeData(primarySwatch: Colors.green),
             home: HomePage(),
           );
-        }
-    );
+        });
   }
 }

@@ -38,6 +38,7 @@ dependencies:
   datepicker_dropdown: ^0.0.8
   get: ^4.6.6
   flutter_screenutil: ^5.9.0
+  age_calculator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
