@@ -1,8 +1,8 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:toejiggeum/languages/language.dart';
 import 'package:toejiggeum/homepage.dart';
 
@@ -14,10 +14,10 @@ import 'package:toejiggeum/homepage.dart';
 //   }catch(e){
 //     print(e);
 //   }
-//
 // }
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -34,10 +34,10 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return GetMaterialApp(
             translations: Languages(),
-            locale: Locale('en', 'US'),
+            locale: Locale('en', 'US',),
             fallbackLocale: const Locale('en', 'US'),
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(primarySwatch: Colors.green),
+            theme: ThemeData(primarySwatch: Colors.indigo),
             home: HomePage(),
           );
         });

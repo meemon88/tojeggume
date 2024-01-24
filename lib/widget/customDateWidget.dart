@@ -30,10 +30,8 @@ Widget customDate(
                 children: <Widget>[
                   ElevatedButton(
                       onPressed: onPressed,
-                      child: dateInputControler == null
-                          ? Text(buttonText, style: TextStyle(fontSize: 14.sp))
-                          : Text(selectedDateText,
-                              style: TextStyle(fontSize: 14.sp))),
+                      child: dateInputControler == null? Text(buttonText, style: TextStyle(fontSize: 14.sp))
+                          : Text(selectedDateText, style: TextStyle(fontSize: 14.sp))),
                   SizedBox(
                     height: 10.h,
                   ),

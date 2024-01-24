@@ -1,11 +1,9 @@
-// import 'package:age_calculator/age_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:toejiggeum/widget/customDateWidget.dart';
-import 'package:toejiggeum/widget/customDetailsBox.dart';
-import 'package:toejiggeum/widget/customTextField.dart';
-
+import 'widget/customDateWidget.dart';
+import 'widget/customDetailsBox.dart';
+import 'widget/customTextField.dart';
 import 'widget/language_screen.dart';
 import 'widget/start_drawer.dart';
 
@@ -19,6 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var result;
   DateTime selectedDate = DateTime.now();
+  DateTime onSelectedDate = DateTime.timestamp();
 
   String totalWorkingDays = "";
 
@@ -50,6 +49,7 @@ class _HomePageState extends State<HomePage> {
     DateTime? startingDate = await showDatePicker(
         context: context,
         initialDate: selectedDate,
+        currentDate: DateTime.timestamp(),
         firstDate: DateTime(DateTime.now().year - 20),
         lastDate: DateTime(DateTime.now().year + 5));
     setState(() {
@@ -84,9 +84,7 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
           centerTitle: true,
           title: Text('app_name'.tr),
-          actions: const [
-            SelectLanguage(),
-          ]),
+          actions: const [SelectLanguage()]),
 
       //Body
 
@@ -96,10 +94,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               customDate(
+
                 widgetTitle: 'job_join_date'.tr,
-                buttonText: 'Select Date',
-                selectedDateText:
-                    "${_startDate?.day} / ${_startDate?.month} / ${_startDate?.year}",
+                buttonText: 'Select_Date'.tr,
+                selectedDateText:"${_startDate?.day} / ${_startDate?.month} / ${_startDate?.year}",
                 dateInputControler: _startDate,
                 onPressed: () {
                   startDate();
@@ -107,22 +105,19 @@ class _HomePageState extends State<HomePage> {
               ),
               customDate(
                   widgetTitle: 'job_end_date'.tr,
-                  buttonText: 'Select Date',
+                  buttonText: 'Select_Date'.tr,
                   onPressed: () {
                     endDate();
                   },
                   selectedDateText:
                       "${_endDate?.day} / ${_endDate?.month} / ${_endDate?.year}",
                   dateInputControler: _endDate),
-              customTextField(label: "Salary One", controller: _firstMonth),
-              customTextField(label: "Salary Two", controller: _secondMonth),
-              customTextField(label: "Salary Three", controller: _thirdMonth),
+              customTextField(label: "salary_One".tr, controller: _firstMonth),
+              customTextField(label: "salary_Two".tr, controller: _secondMonth),
+              customTextField(label: "salary_Three".tr, controller: _thirdMonth),
               customTextField(
-                  label: "Samsung Amount", controller: _samsungAmount),
-              result == null
-                  ? Container()
-                  : customDetailsBox(
-                      child: Column(children: [
+                  label: "samsung_Amount".tr, controller: _samsungAmount),
+              result == null? Container() : customDetailsBox(child: Column(children: [
                         SizedBox(height: 5.h,),
                       Text("Amount of money you can get: ${result.toString()}",style: TextStyle(fontSize: 16.sp),),
                         SizedBox(height: 5.h,),
@@ -131,11 +126,18 @@ class _HomePageState extends State<HomePage> {
                     ])),
               ElevatedButton(
                   onPressed: () {
+
                     setState(() {
                       calculation();
+                      calculation().clear();
                     });
                   },
-                  child: Text('calculate'.tr))
+                  child: Text('calculate'.tr)) ,
+              // ElevatedButton(onPressed: (){
+              //   setState(() {
+              //     calculation().clear();
+              //   });
+              // }, child: Text('Clear')),
             ],
           ),
         ),
