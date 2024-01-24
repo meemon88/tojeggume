@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
           centerTitle: true,
           title: Text('app_name'.tr),
-          actions: const [SelectLanguage()]),
+          actions: [SelectLanguage()]),
 
       //Body
 

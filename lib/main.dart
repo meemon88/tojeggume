@@ -18,12 +18,14 @@ import 'package:toejiggeum/homepage.dart';
 
 void main() async {
   await GetStorage.init();
-  runApp(const MyApp());
+  // box.write("ks", "khariul");
+  // print(box.read("ks"));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+   MyApp({super.key});
+GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -34,7 +36,11 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return GetMaterialApp(
             translations: Languages(),
-            locale: Locale('en', 'US',),
+            // locale: Locale('en', 'US',),
+            locale:
+              box.read("language")== "english" ? Locale('en', 'US',):
+              box.read("language")== "bangla" ? Locale('bn', 'BD',):
+              box.read("language")== "korean" ? Locale('ko', 'KR',): Locale('en', 'US',),
             fallbackLocale: const Locale('en', 'US'),
             debugShowCheckedModeBanner: false,
             theme: ThemeData(primarySwatch: Colors.indigo),
